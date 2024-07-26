@@ -264,7 +264,7 @@ function updateSummary() {
     numTransactionsSpan.textContent = transactionsLast30Days;
     avgDailySpan.textContent = (last30DaysTotal / 30).toFixed(2);
     updateSpendingTrend();
-    updateCategoryChart(categoryTotals30Days); // Add this line to update the chart
+    updateCategoryChart(categoryTotals30Days);
 }
 
 function updateSpendingTrend() {
@@ -318,22 +318,28 @@ function showStats(period) {
     const now = new Date();
     let startDate, endDate;
 
+    document.querySelectorAll('.tab').forEach(tab => tab.classList.remove('active'));
+
     switch (period) {
         case '30-days':
             startDate = new Date(now.getTime() - (30 * 24 * 60 * 60 * 1000));
             endDate = now;
+            document.getElementById('tab-30-days').classList.add('active');
             break;
         case 'current-month':
             startDate = new Date(now.getFullYear(), now.getMonth(), 1);
             endDate = now;
+            document.getElementById('tab-current-month').classList.add('active');
             break;
         case '90-days':
             startDate = new Date(now.getTime() - (90 * 24 * 60 * 60 * 1000));
             endDate = now;
+            document.getElementById('tab-90-days').classList.add('active');
             break;
         case 'current-year':
             startDate = new Date(now.getFullYear(), 0, 1);
             endDate = now;
+            document.getElementById('tab-current-year').classList.add('active');
             break;
         case 'custom':
             startDate = new Date(document.getElementById('start-date').value);
@@ -364,8 +370,15 @@ function showStats(period) {
     numTransactionsSpan.textContent = numTransactions;
     avgDailySpan.textContent = avgDailySpending.toFixed(2);
     updateSpendingTrend();
-    updateCategoryChart(categoryTotals); // Add this line to update the chart
+    updateCategoryChart(categoryTotals);
 }
+
+document.addEventListener('DOMContentLoaded', () => {
+    showStats('30-days');
+    document.getElementById('tab-30-days').classList.add('active');
+    inputDate.value = new Date().toISOString().split('T')[0];
+});
+
 
 function updateCategoryChart(categoryTotals) {
     const ctx = document.getElementById('categoryChart').getContext('2d');

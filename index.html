@@ -35,17 +35,18 @@
             <div id='top-profile'>
                 <div id="user-profile">
                     <div id="user-image">
-                        <img id='userImage' src='img/user.jpg' />
+                        <img id='userImage' src='img/user.png' />
                     </div>
                     <h1 id='h1'>John Doe</h1>
                     <button id='sign-out'>Sign Out</button>
                 </div>
                 <div id="tabs">
-                    <button class="tab" onclick="showStats('30-days')">Last 30 Days</button>
-                    <button class="tab" onclick="showStats('current-month')">July 2024</button>
-                    <button class="tab" onclick="showStats('90-days')">Last 90 Days</button>
-                    <button class="tab" onclick="showStats('current-year')">2024</button>
+                    <button class="tab" id="tab-30-days" onclick="showStats('30-days')">Last 30 Days</button>
+                    <button class="tab" id="tab-current-month" onclick="showStats('current-month')">July 2024</button>
+                    <button class="tab" id="tab-90-days" onclick="showStats('90-days')">Last 90 Days</button>
+                    <button class="tab" id="tab-current-year" onclick="showStats('current-year')">2024</button>
                 </div>
+                
                 <div id="custom-date-range">
                     <label for="start-date">Start Date:</label>
                     <input type="date" id="start-date">
@@ -63,7 +64,7 @@
                         <p>Number of Transactions: <span id="num-transactions">0</span></p>
                         <p>Average Daily Spending: <span id="avg-daily">0.00</span></p>
                     </div>
-                    <div id="chart-container" style="max-width: 400px; margin: auto; display: none;">
+                    <div id="chart-container">
                         <canvas id="categoryChart"></canvas>
                     </div>                    
                 </div>
